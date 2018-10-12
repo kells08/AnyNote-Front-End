@@ -4,7 +4,7 @@ class Login extends Component {
   render() {
     return (
       <div className="" style={{border: 'solid'}}>
-       <p>Please login:</p>
+       <h4>Please login:</h4>
        <input type="text" placeholder="username"/>
        <input type="text" placeholder="password"/>
       </div>

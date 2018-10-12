@@ -5,7 +5,7 @@ class Search extends Component {
     return (
       <div className="">
        Search your notes:
-       <input type='text'/>
+       <input type='text'placeholder='note title'/>
        <button>Search</button>
       </div>
     );

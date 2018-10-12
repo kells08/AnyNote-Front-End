@@ -6,7 +6,7 @@ class MainContainer extends Component {
   render() {
     return (
       <div className="" style={{border: 'solid'}}>
-        MainContainer
+        <h4>MainContainer</h4>
         <Search/>
         <Note/>
       </div>
