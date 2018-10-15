@@ -5,7 +5,7 @@ import Note from './MainPage/Note'
 class MainContainer extends Component {
   render() {
     return (
-      <div className="" style={{border: 'solid'}}>
+      <div className="" style={{backgroundColor:'white', opacity:'.8'}}>
         <h4>MainContainer</h4>
         <Search/>
         <Note/>
