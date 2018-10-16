@@ -4,6 +4,13 @@ import Note from './MainPage/Note'
 import FullNote from './MainPage/FullNote'
 
 class MainContainer extends Component {
+  state = {
+    selectedNote: null
+  }
+
+  selectNote = (note) => {
+    this.setState({selectedNote: note})
+  }
 
   // filterNotes = () => {
   //   const allNotes = this.state.notes
@@ -38,16 +45,16 @@ class MainContainer extends Component {
     const notes = this.props.notes
     return (
       <div>
+        <h4>MainContainer </h4>
+        <Search/>
         {notes.map(note => {
           return (
             <div className="" style={{backgroundColor:'white', opacity:'.8'}}>
-              <h4>MainContainer </h4>
-              <Search/>
-              <Note note={note} key={note.id}/>
-              <FullNote/>
+              <Note note={note} key={note.id} selectNote={this.selectNote}/>
             </div>
           )
         })}
+        <FullNote selectedNote={this.selectedNote} />
       </div>
     )
   }

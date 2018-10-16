@@ -19,15 +19,14 @@ class Login extends Component {
       <div>
         {this.props.loggedIn
         ? <button type='submit' onClick={this.handleLogout}>Logout</button>
-        :  <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>
-          <h1>Welcome! </h1>
-          <h4>Please login:</h4>
-          <input type="text" placeholder="username" onChange={this.handleData} name="username"/>
-          <input type="text" placeholder="password" onChange={this.handleData} name="password"/>
-          <button type='submit' onClick={this.handleClick}>Submit</button>
-      </div>
-     }
-     
+        : <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>
+            <h1>Welcome! </h1>
+            <h4>Please login:</h4>
+            <input type="text" placeholder="username" onChange={this.handleData} name="username"/>
+            <input type="text" placeholder="password" onChange={this.handleData} name="password"/>
+            <button type='submit' onClick={this.handleClick}>Submit</button>
+          </div>
+        }
       </div>
     );
   }
