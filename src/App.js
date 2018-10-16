@@ -84,12 +84,19 @@ class App extends Component {
     })
   }//send user
   
+  //does this need to receive username as argument?
+  logout = (username) => {
+    this.setState({
+      loggedIn: false
+    })
+  }
+
   render() {
     console.log(this.state.notes)
     return (
       <div className="wrapper style1">
         <Header/>
-        <Login login={this.login} loggedIn={this.state.loggedIn}/>
+        <Login login={this.login} logout={this.logout} loggedIn={this.state.loggedIn}/>
         <MainContainer notes={this.state.notes}/>
         <Footer />
       </div>

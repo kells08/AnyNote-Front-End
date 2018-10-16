@@ -10,11 +10,15 @@ class Login extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
+  handleLogout = (e) => {
+    this.props.logout(this.state.username)
+  }//do I need to pass the user info to the logout func?
+
   render() {
     return (
       <div>
         {this.props.loggedIn
-        ? null
+        ? <button type='submit' onClick={this.handleLogout}>Logout</button>
         :  <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>
           <h1>Welcome! </h1>
           <h4>Please login:</h4>
