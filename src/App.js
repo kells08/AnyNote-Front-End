@@ -1,57 +1,72 @@
 import React, { Component } from 'react';
-import Header from './Components/Header'
-import Login from './Components/Login'
-import MainContainer from './Components/MainContainer'
-import FullNote from './Components/FullNote'
-import Footer from './Components/Footer'
+import Header from './Components/Header';
+import Login from './Components/Login';
+import MainContainer from './Components/MainContainer';
+import Footer from './Components/Footer';
 
-// import {users} from '../anynote-back-end/db/seeds'
-// import {notes} from '../anynote-back-end/db/seeds'
 import './App.css';
 
 class App extends Component {
 
   state = {
+    user: {
+      name: "",
+      username: "",
+      password: ""
+    },
     notes: [],
-    selectedNote: []
+    selectedNote: [],
+    loggedIn: false,
+    currentUser: {}
   }
 
-  filterNotes = () => {
-    const allNotes = this.state.notes
-    return allNotes.filter( note => {
-      return note.title.includes(this.state.searchTerm)
-    })
+  componentDidMount() {
+  //LOGIN POST //get user info, route on backend /profile and set user
+  // if (!localStorage.token) {
+  //   return null
+  //   } 
+  // else //if user.id == note.user_id, render notes
   }
 
-  selectNote = (note) => {
-    //console.log(note)
-    let index = this.state.notes.indexOf(note);
-      if (index > -1) {
-        this.state.notes.splice(index, 1);
-      }
-      this.setState({
-        selectedNote: this.state.selectedNote
+  login = (username, password) => {
+    fetch('http://localhost:3001/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        "user": {
+          "username": username,
+          "password": password
+        }
       })
-    //console.log(this.state)
-  }
-
-  // componentDidMount() {
-  //   fetch('notes')
-  //     .then(resp => resp.json())
-  //     .then(console.log)
-  // }
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      localStorage.token = data.jwt; 
+      this.setState({
+        currentUser: data.user, 
+        loggedIn: true
+      })
+    })
+  }//send user
+  
 
   render() {
     return (
       <div className="wrapper style1">
         <Header/>
-        <Login/>
+        <Login login={this.login}/>
         <MainContainer />
-        <FullNote />
         <Footer />
       </div>
-    );
+    )
   }
-}
 
+  // signout = () => {
+  // localStorage.clear()
+  // }
+  
+}
 export default App;

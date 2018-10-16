@@ -8,8 +8,8 @@ class Footer extends Component {
 				<div className="copyright" style={{backgroundColor:'white', opacity:'.7'}}>
 					<p>Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a></p>
 					<ul className="icons">
-						<li><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
-						<li><a href="#" class="fa fa-twitter"><span>Twitter</span></a></li>
+						<li><a href="#" className="fa fa-facebook"><span>Facebook</span></a></li>
+						<li><a href="#" className="fa fa-twitter"><span>Twitter</span></a></li>
 					</ul>
 				</div>
 			</div>
