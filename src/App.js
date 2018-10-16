@@ -20,13 +20,45 @@ class App extends Component {
     currentUser: {}
   }
 
+   //get user info, route on backend /profile and set user
   componentDidMount() {
-  //LOGIN POST //get user info, route on backend /profile and set user
+    //fetch user profile
+    const token = localStorage.token;
+    fetch('http://localhost:3001/profile', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        if (!data.error) {
+          this.setState ({
+            currentUser: data
+          });
+        }
+      })
+    
+    //fetch notes
+    const notesUrl = 'http://localhost:3001/notes'
+    fetch(notesUrl, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }) 
+      .then(resp => resp.json())
+      .then(response => {
+        this.setState ({
+         notes: response
+        })
+      })
+  }
   // if (!localStorage.token) {
   //   return null
   //   } 
   // else //if user.id == note.user_id, render notes
-  }
+    
 
   login = (username, password) => {
     fetch('http://localhost:3001/login', {
@@ -52,13 +84,13 @@ class App extends Component {
     })
   }//send user
   
-
   render() {
+    console.log(this.state.notes)
     return (
       <div className="wrapper style1">
         <Header/>
-        <Login login={this.login}/>
-        <MainContainer />
+        <Login login={this.login} loggedIn={this.state.loggedIn}/>
+        <MainContainer notes={this.state.notes}/>
         <Footer />
       </div>
     )

@@ -12,12 +12,18 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>
-        <h1>Welcome! </h1>
-        <h4>Please login:</h4>
-        <input type="text" placeholder="username" onChange={this.handleData} name="username"/>
-        <input type="text" placeholder="password" onChange={this.handleData} name="password"/>
-        <button type='submit' onClick={this.handleClick}>Submit</button>
+      <div>
+        {this.props.loggedIn
+        ? null
+        :  <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>
+          <h1>Welcome! </h1>
+          <h4>Please login:</h4>
+          <input type="text" placeholder="username" onChange={this.handleData} name="username"/>
+          <input type="text" placeholder="password" onChange={this.handleData} name="password"/>
+          <button type='submit' onClick={this.handleClick}>Submit</button>
+      </div>
+     }
+     
       </div>
     );
   }
