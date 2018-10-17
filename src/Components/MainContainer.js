@@ -11,33 +11,6 @@ class MainContainer extends Component {
   selectNote = (note) => {
     this.setState({selectedNote: note})
   }
-
-  // filterNotes = () => {
-  //   const allNotes = this.state.notes
-  //   return allNotes.filter( note => {
-  //     return note.title.includes(this.state.searchTerm)
-  //   })
-  // }
-
-  // selectNote = (note) => {
-  //   //console.log(note)
-  //   let index = this.state.notes.indexOf(note);
-  //     if (index > -1) {
-  //       this.state.notes.splice(index, 1);
-  //     }
-  //     this.setState({
-  //       selectedNote: this.state.selectedNote
-  //     })
-  //   //console.log(this.state)
-  // }
-
-  // //GET Notes/:id
-  // getNotes = () => {
-  // const notesUrl = 'http://localhost:3001/notes'
-  // fetch(notesUrl)
-  //   .then(resp => resp.json())
-  //   .then(notes:notes)
-  // }
   
   render() {
   console.log(this.props)
@@ -80,3 +53,32 @@ export default MainContainer;
   //   }})
   //   .then(resp => resp.json())
   //   .then(console.log)
+
+
+
+  // filterNotes = () => {
+  //   const allNotes = this.state.notes
+  //   return allNotes.filter( note => {
+  //     return note.title.includes(this.state.searchTerm)
+  //   })
+  // }
+
+  // selectNote = (note) => {
+  //   //console.log(note)
+  //   let index = this.state.notes.indexOf(note);
+  //     if (index > -1) {
+  //       this.state.notes.splice(index, 1);
+  //     }
+  //     this.setState({
+  //       selectedNote: this.state.selectedNote
+  //     })
+  //   //console.log(this.state)
+  // }
+
+  // //GET Notes/:id
+  // getNotes = () => {
+  // const notesUrl = 'http://localhost:3001/notes'
+  // fetch(notesUrl)
+  //   .then(resp => resp.json())
+  //   .then(notes:notes)
+  // }
