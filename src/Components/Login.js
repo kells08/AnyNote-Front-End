@@ -18,7 +18,10 @@ class Login extends Component {
     return (
       <div>
         {this.props.loggedIn
-        ? <button type='submit' onClick={this.handleLogout}>Logout</button>
+        ? <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>
+            <h2>Welcome {this.state.username}</h2>
+            <button type='submit' onClick={this.handleLogout}>Logout</button>
+          </div>
         : <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>
             <h1>Welcome! </h1>
             <h4>Please login:</h4>
@@ -29,7 +32,7 @@ class Login extends Component {
         }
       </div>
     );
-  }
+  }  // need to add signup option
 }
 
 export default Login;

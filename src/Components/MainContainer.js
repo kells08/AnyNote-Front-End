@@ -45,9 +45,12 @@ class MainContainer extends Component {
     const notes = this.props.notes
     return (
       <div>
-        <h4>MainContainer </h4>
-        <Search/>
-        {notes.map(note => {
+        if !{this.props.loggedIn
+        ? null
+        : <div>
+          <h4>MainContainer </h4>
+          <Search/>
+          {notes.map(note => {
           return (
             <div className="" style={{backgroundColor:'white', opacity:'.8'}}>
               <Note note={note} key={note.id} selectNote={this.selectNote}/>
@@ -55,6 +58,8 @@ class MainContainer extends Component {
           )
         })}
         <FullNote selectedNote={this.selectedNote} />
+        </div>
+        }
       </div>
     )
   }

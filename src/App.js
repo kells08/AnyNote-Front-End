@@ -97,7 +97,7 @@ class App extends Component {
       <div className="wrapper style1">
         <Header/>
         <Login login={this.login} logout={this.logout} loggedIn={this.state.loggedIn}/>
-        <MainContainer notes={this.state.notes}/>
+        <MainContainer notes={this.state.notes} loggedIn={this.state.loggedIn}/>
         <Footer />
       </div>
     )
