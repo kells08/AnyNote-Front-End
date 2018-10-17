@@ -19,7 +19,7 @@ class Login extends Component {
       <div>
         {this.props.loggedIn
         ? <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>
-            <h2>Welcome {this.state.username}</h2>
+            <h2>Welcome, {this.state.username}!</h2>
             <button type='submit' onClick={this.handleLogout}>Logout</button>
           </div>
         : <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>

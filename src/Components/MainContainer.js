@@ -39,15 +39,14 @@ class MainContainer extends Component {
   //   .then(notes:notes)
   // }
   
-  
   render() {
   console.log(this.props)
     const notes = this.props.notes
+    console.log(this.props.loggedIn)
     return (
       <div>
-        if !{this.props.loggedIn
-        ? null
-        : <div>
+        {this.props.loggedIn
+        ? <div>
           <h4>MainContainer </h4>
           <Search/>
           {notes.map(note => {
@@ -59,6 +58,7 @@ class MainContainer extends Component {
         })}
         <FullNote selectedNote={this.selectedNote} />
         </div>
+        : null
         }
       </div>
     )
