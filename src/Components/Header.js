@@ -11,7 +11,6 @@ class Header extends Component {
           <nav id="nav">
             <ul>
               <li className="active"><a href="index.html">Home</a></li>
-              <li><a href="left-sidebar.html">Login</a></li>
             </ul>
           </nav>
       </div>
@@ -27,3 +26,5 @@ class Header extends Component {
 }
 
 export default Header;
+
+//<li><a href="left-sidebar.html">Login</a></li>

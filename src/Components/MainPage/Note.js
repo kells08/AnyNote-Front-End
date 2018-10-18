@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 class Note extends Component {
   
   render() {
-    console.log(this.props)
+    console.log(this.props.note.id)
     return (
       <div id="extra">
 				<div className="container">
@@ -20,5 +20,8 @@ class Note extends Component {
     );  
   }
 }
-//<a href="" className="button">Read More</a> 
+
 export default Note;
+
+
+//<a href="" className="button">Read More</a> 
