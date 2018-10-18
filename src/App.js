@@ -14,8 +14,6 @@ class App extends Component {
       username: "",
       password: ""
     },
-    notes: [],
-    selectedNote: [],
     loggedIn: false,
     currentUser: {}
   }
@@ -24,7 +22,8 @@ class App extends Component {
   componentDidMount() {
     //fetch user profile
     const token = localStorage.token;
-    fetch('http://localhost:3001/profile', {
+    if (token) {
+      fetch('http://localhost:3001/profile', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`
@@ -38,21 +37,24 @@ class App extends Component {
           });
         }
       })
+    }
     
-    //fetch notes
-    const notesUrl = 'http://localhost:3001/notes'
-    fetch(notesUrl, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }) 
-      .then(resp => resp.json())
-      .then(response => {
-        this.setState ({
-         notes: response
-        })
-      })
+    
+    // //fetch notes
+    // const notesUrl = 'http://localhost:3001/notes'
+    // fetch(notesUrl, {
+    //   method: 'GET',
+    //   headers: {
+    //     Authorization: `Bearer ${token}`
+    //   }
+    // }) 
+    //   .then(resp => resp.json())
+    //   .then(response => {
+    //     this.setState ({
+    //      notes: response
+    //     })
+    //   })
+    
   }
   // if (!localStorage.token) {
   //   return null
@@ -61,11 +63,11 @@ class App extends Component {
     
 
   login = (username, password) => {
+    localStorage.clear()
     fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         "user": {
@@ -76,18 +78,33 @@ class App extends Component {
     })
     .then(resp => resp.json())
     .then(data => {
-      localStorage.token = data.jwt; 
-      this.setState({
+      if(data.jwt) 
+        { 
+          localStorage.token = data.jwt;
+          this.setState({
         currentUser: data.user, 
         loggedIn: true
-      })
-    })
+        })
+      }
+      else {
+        localStorage.token = "undefined"
+        window.alert("Invalid Credentials. Please try again!");
+      }
+    }
+    )
   }//send user
   
   //does this need to receive username as argument?
   logout = (username) => {
+    localStorage.clear()
     this.setState({
-      loggedIn: false
+      user: {
+        name: "",
+        username: "",
+        password: ""
+      },
+      loggedIn: false,
+      currentUser: {}
     })
   }
 
@@ -97,15 +114,11 @@ class App extends Component {
       <div className="wrapper style1">
         <Header/>
         <Login login={this.login} logout={this.logout} loggedIn={this.state.loggedIn}/>
-        <MainContainer notes={this.state.notes} loggedIn={this.state.loggedIn}/>
+        {this.state.loggedIn ? <MainContainer  loggedIn={this.state.loggedIn} style={{backgroundColor:'white', opacity:'.8'}}/> : null}
         <Footer />
       </div>
     )
   }
-
-  // signout = () => {
-  // localStorage.clear()
-  // }
   
 }
 export default App;

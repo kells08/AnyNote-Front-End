@@ -5,34 +5,63 @@ import FullNote from './MainPage/FullNote'
 
 class MainContainer extends Component {
   state = {
-    selectedNote: null
+    selectedNote: null,
+    clicked: false,
+    clickedCreate: false,
+    notes: [],
+    currentNote: {}
+  }
+
+  componentDidMount() {
+    const token = localStorage.token;
+    if (token) {
+      const notesUrl = 'http://localhost:3001/notes'
+    fetch(notesUrl, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }) 
+      .then(resp => resp.json())
+      .then(response => {
+        this.setState ({
+         notes: response
+        })
+      })
+    } 
+  }
+
+  //if clicked and selectedNote is empty, render blank form
+  handleCreate = () => {
+    {this.setState({
+      clickedCreate: true
+    })}
   }
 
   selectNote = (note) => {
+    console.log(note)
     this.setState({selectedNote: note})
-  }
+  } //setting state of this.props.note.id
   
   render() {
   console.log(this.props)
-    const notes = this.props.notes
+    const notes = this.state.notes
     console.log(this.props.loggedIn)
     return (
       <div>
-        {this.props.loggedIn
-        ? <div>
-          <h4>MainContainer </h4>
+        <div>
+          <button onClick={this.handleCreate}>Create a new note</button>
+          {this.state.clickedCreate ? <FullNote /> : null}
           <Search/>
-          {notes.map(note => {
+          {notes.length ? notes.map(note => {
           return (
-            <div className="" style={{backgroundColor:'white', opacity:'.8'}}>
+            <div className="" style={{backgroundColor:'white', opacity:'.7'}}>
               <Note note={note} key={note.id} selectNote={this.selectNote}/>
-            </div>
+            </div> //check if this.state.selected is present do full note
           )
-        })}
-        <FullNote selectedNote={this.selectedNote} />
+        }) : null}
+        <FullNote selectedNote={this.state.selectedNote} />
         </div>
-        : null
-        }
       </div>
     )
   }

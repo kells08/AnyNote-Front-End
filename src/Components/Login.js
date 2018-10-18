@@ -14,7 +14,13 @@ class Login extends Component {
     this.props.logout(this.state.username)
   }//do I need to pass the user info to the logout func?
 
-  render() {
+  handleSignup = () => {
+
+  }
+
+  render() { 
+    //console.log(this.props.loggedIn) //on refresh, loggedIn is reset to false
+    //console.log(this.props)
     return (
       <div>
         {this.props.loggedIn
@@ -28,7 +34,8 @@ class Login extends Component {
             <input type="text" placeholder="username" onChange={this.handleData} name="username"/>
             <input type="text" placeholder="password" onChange={this.handleData} name="password"/>
             <button type='submit' onClick={this.handleClick}>Submit</button>
-          </div>
+            <br/><a onClick="handleSignup">No Account? Signup!</a>
+          </div>//click Signup href={this.signupFunc}
         }
       </div>
     );
