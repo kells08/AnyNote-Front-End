@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Search from './MainPage/Search'
 import Note from './MainPage/Note'
 import FullNote from './MainPage/FullNote'
+import NoteForm from './MainPage/NoteForm'
 
 class MainContainer extends Component {
   state = {
@@ -9,7 +10,7 @@ class MainContainer extends Component {
     clicked: false,
     clickedCreate: false,
     notes: [],
-    currentNote: {}
+    currentNote: null
   }
 
   componentDidMount() {
@@ -32,35 +33,71 @@ class MainContainer extends Component {
   }
 
   //if clicked and selectedNote is empty, render blank form
-  handleCreate = () => {
-    {this.setState({
+  createNote = () => {
+    
+    this.setState({
       clickedCreate: true
-    })}
+    })
+
   }
+
+  saveNewNote = ({ title, due_date, color, text }) => {
+      const token = localStorage.token
+      fetch('http://localhost:3001/notes/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify ({
+        note: { 
+          title: title,
+          due_date, // same as due_date: due_date
+          color,
+          text 
+        }
+      })})
+      .then(resp => resp.json())
+      .then(response => {
+        console.log(response)
+        this.setState ({
+          notes: response,
+          clickedCreate: false,
+          selectedNote: null
+        })
+      })
+  }
+
+  updateAllNotes = allNotes => {
+    this.setState({
+      currentNote: null,
+      selectedNote: null,
+      notes: allNotes
+    })
+  }
+  
 
   selectNote = (note) => {
     console.log(note)
     this.setState({selectedNote: note})
   } //setting state of this.props.note.id
   
-  render() {
-  console.log(this.props)
-    const notes = this.state.notes
-    console.log(this.props.loggedIn)
+  render(){
+    console.log(this.state.notes)
+    let notes = this.state.notes.map(note => (
+      <div className="" >
+        <Note note={note} key={note.id} selectNote={this.selectNote}/>
+      </div> 
+  ));
+
     return (
       <div>
         <div>
-          <button onClick={this.handleCreate}>Create a new note</button>
-          {this.state.clickedCreate ? <FullNote /> : null}
+          <button onClick={this.createNote}>Create a new note</button>
+          {this.state.clickedCreate ? <NoteForm submitForm={this.saveNewNote} /> : null}
           <Search/>
-          {notes.length ? notes.map(note => {
-          return (
-            <div className="" style={{backgroundColor:'white', opacity:'.7'}}>
-              <Note note={note} key={note.id} selectNote={this.selectNote}/>
-            </div> //check if this.state.selected is present do full note
-          )
-        }) : null}
-        <FullNote selectedNote={this.state.selectedNote} />
+          { notes }
+        {this.state.selectedNote ? <FullNote {...this.state.selectedNote} updateAllNotes={this.updateAllNotes} /> : null }
         </div>
       </div>
     )

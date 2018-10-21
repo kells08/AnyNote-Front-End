@@ -1,58 +1,104 @@
 import React, { Component } from 'react';
+import NoteForm from './NoteForm'
 
 class FullNote extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      noteInputs: {
-        title: '',
-        due_date: '',
-        color: '',
-        text: ''
-      },
-      inputTexts: { 
-        title: '',
-        due_date: '',
-        color: '',
-        text: ''
-      }, 
-      mode: 'view'
+  // constructor(props) {
+  //   super(props)
+    state = {
+        title: this.props.title || '',
+        due_date: this.props.due_date || '',
+        color: this.props.color || '',
+        text: this.props.text || '',
+        id: this.props.id || '',
+        mode: 'view'
     };  
 
-    this.handleChange = this.handleChange.bind(this);
-    //this.handleSave = this.handleSave.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
-  }
+  //   this.handleChange = this.handleChange.bind(this);
+  //   this.handleSave = this.handleSave.bind(this);
+  //   this.handleEdit = this.handleEdit.bind(this);
+  // }
   
-  handleChange(e) {
-    
-    this.setState({inputTexts: {...this.state.inputTexts, [e.target.name]: e.target.value }});
-  }
-
-  // handleSave(e) {
-  //   this.setState({noteInputs: this.state.inputTexts, mode:'view'})
+  // handleChange = (e) => {
+  //   this.setState({inputTexts: {...this.state.inputTexts, [e.target.name]: e.target.value }});
   // }
 
-  handleEdit() {
-    this.setState({mode:'edit'})
+  // handleSave = () => {
+  //   this.setState({noteInputs: this.state.inputTexts, mode:'view'})
+  // }
+  saveEdit= ({ title, due_date, color, text }) => {
+    const token = localStorage.token
+    fetch(`http://localhost:3001/notes/${this.state.id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify ({
+      note: { 
+        title: title,
+        due_date, // same as due_date: due_date
+        color,
+        text 
+      }
+    })})
+    .then(resp => resp.json())
+    .then(response => {
+      this.setState ({  // after setting state in this
+                        // component back to view mode 
+                        // send response back to callback to mainContainer
+        mode: 'view',
+        title: '',
+        due_date: '',
+        color: '',
+        text: '',
+        id: '',
+      }, () => {
+        this.props.updateAllNotes(response);
+      })
+    })
+}
+
+  handleEdit = () => {
+    this.setState({
+      mode:'edit',
+    showingForm: true
+    })
   }
 
-  renderInputFields() {
-    if(this.state.mode === 'view') {
-      return <div></div>
-    } else {
-      return (
-        <div className="" >
-          <input name="title" onChange={this.handleChange} placeholder={this.state.noteInputs.title}/>
-          <input name="due_date" onChange={this.handleChange} placeholder={this.state.inputTexts.due_date}/>
-          <textarea name="text" onChange={this.handleChange} value={this.state.inputTexts.text} placeholder='note text'/>
-        </div>
-      )
-    }
-  }
+  // renderInputFields() {
+  //   console.log(this.props)
+  //   if(this.state.mode === 'view') {
+  //     return <div></div>
+  //   } else {
+  //     return (
+  //       <NoteForm />
+  //     )
+  //   }
+  // } 
 
-  renderEditButton() {
-    if(this.state.mode === 'view') {
+  handleDelete= () => {
+    const token = localStorage.token
+    fetch(`http://localhost:3001/notes/${this.state.id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }})
+    .then(resp => resp.json())
+    .then(response => {
+      this.setState ({  // after setting state in this
+                        // component back to view mode 
+                        // send response back to callback to mainContainer
+        mode: 'view',
+
+      }, () => {
+        this.props.updateAllNotes(response);
+      })
+    })
+}
+
+  renderEditButton = () => {
+    if (this.state.mode === 'view') {
       return (
         <button onClick={this.handleEdit}>
           Edit
@@ -60,23 +106,22 @@ class FullNote extends Component {
       );
     } else {
       return (
-        <button>
-          Save
+        <button onClick={this.handleDelete}>
+          DELETE
         </button>
       );
     }
   }
 
-  //-------------------------
-
   render() {
     console.log(this.state)
     return (
       <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>
-        <h4>{this.props.selectedNote ? this.props.selectedNote.title : 'None selected'}</h4>
-        <p>{this.props.selectedNote ? this.props.selectedNote.text : 'None selected'}</p>
-        {this.renderInputFields()}
+        <h4>{this.state.title ? this.state.title : 'None selected'}</h4>
+        <p>{this.state.text ? this.state.text : 'None selected'}</p>
+        {/* {this.renderInputFields()} */}
         {this.renderEditButton()}
+        {this.state.mode === 'edit' ? <NoteForm {...this.state}  submitForm={this.saveEdit}/>  : null}
       </div>
     );
   } 
@@ -84,7 +129,3 @@ class FullNote extends Component {
 
 export default FullNote;
 
-// pseudocode:
-// if selectedNote
-// render <FullNote/> with edit 
-// upon save, return to <MainContainer/>
