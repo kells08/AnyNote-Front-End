@@ -459,7 +459,7 @@
 		font-size: 1.2em;
 		font-weight: 600;
 		color: #FFF !important;
-		margin-bottom: .5em;
+		margin: .5em .5em;
 	}
 
 		input[type="submit"]:hover,
@@ -550,15 +550,22 @@
 
 	#nav {
 		position: absolute;
-		right: 0;
-		top: 0;
+		/* right: 0; */
+		/* top: 0; */
     cursor: default;
-    width: 25%;
+		width: 100%;
+		background: url(./images/trianglify3large.png);
+		opacity: .9;
+		display: block;
+		clear: both;
+		text-align: right;
+
+
 	}
 
 	#nav ul li {
 		display: inline-block;
-		padding: 1.25em 1.25em;
+		padding: .5em 2em;
 	}
 
 	#nav ul li a {
@@ -567,7 +574,7 @@
 		-o-transition: color 0.35s ease-in-out;
 		-ms-transition: color 0.35s ease-in-out;
 		transition: color 0.35s ease-in-out;
-		display: inline-block;
+		/* display: inline-block; */
 		color: #ddd;
 		color: rgba(255, 255, 255, 0.75);
 		text-decoration: none;
@@ -678,6 +685,8 @@
 		height: 10em;
 		display:block;
 		float: left; 
+		top: 10em;
+		
 		/* padding-top: 3em; 	/* initial ratio of 1:1*/
 	/* 	padding-bottom: 2em; */
 	}

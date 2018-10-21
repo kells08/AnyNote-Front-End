@@ -10,10 +10,6 @@ class Login extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
-  handleLogout = (e) => {
-    this.props.logout(this.state.username)
-  }//do I need to pass the user info to the logout func?
-
   handleSignup = () => {
 
   }
@@ -25,8 +21,7 @@ class Login extends Component {
       <div>
         {this.props.loggedIn
         ? <div className="banner">
-            <h2>Welcome, {this.state.username}!</h2>
-            <button type='submit' class='button small' onClick={this.handleLogout}>Logout</button>
+            <h2>Hey, {this.state.username}!</h2>
           </div>
         : <div className="banner">
             <h1>Welcome! </h1>

@@ -34,11 +34,9 @@ class MainContainer extends Component {
 
   //if clicked and selectedNote is empty, render blank form
   createNote = () => {
-    
     this.setState({
       clickedCreate: true
     })
-
   }
 
   saveNewNote = ({ title, due_date, color, text }) => {
@@ -81,6 +79,14 @@ class MainContainer extends Component {
     console.log(note)
     this.setState({selectedNote: note})
   } //setting state of this.props.note.id
+
+  searchNotes = () => {
+
+  }
+
+  handleLogout = (e) => {
+    this.props.logout(this.state.username)
+  }//do I need to pass the user info to the logout func?
   
   render(){
     console.log(this.state.notes)
@@ -95,11 +101,11 @@ class MainContainer extends Component {
         <div>
           <Search/>
           <nav id="nav">
-            <ul>
-              <li className="active"><a href="index.html">Home</a></li>
-            </ul>
+            <button class='button small' onClick={this.createNote}>Create a new note</button>
+            <button class='button small' onClick={this.searchNotes}>Search your notes</button> 
+            <button class='button small' onClick={this.handleLogout} >Logout</button>           
           </nav>
-          <button class='button small' onClick={this.createNote}>Create a new note</button>
+          
           {this.state.clickedCreate ? <NoteForm submitForm={this.saveNewNote} /> : null}
           
           { notes }

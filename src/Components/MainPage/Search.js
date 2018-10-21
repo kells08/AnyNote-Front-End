@@ -4,9 +4,7 @@ class Search extends Component {
   render() {
     return (
       <div className="search" >
-       Search your notes:
-       <input type='text' placeholder='note title'/>
-       <button class='button small'>Search</button>
+       <p>Search your notes: </p> <input type='text' placeholder='note title'/> <button class='button small'>Search</button>
       </div>
     );
   }
