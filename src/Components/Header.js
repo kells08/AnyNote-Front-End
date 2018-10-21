@@ -8,11 +8,7 @@ class Header extends Component {
             <h1><a href="index.html">AnyNote </a></h1>
             <span style={{color:'#555'}}> by Kelly Lwakatare</span>
           </div>
-          {/* <nav id="nav">
-            <ul>
-              <li className="active"><a href="index.html">Home</a></li>
-            </ul>
-          </nav> */}
+          
       </div>
 
     );

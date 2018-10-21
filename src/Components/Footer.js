@@ -4,7 +4,7 @@ class Footer extends Component {
   render() {
     return (
       <div id="copyright">
-			<div className="container">
+			{/* <div className="container"> */}
 				<div className="copyright">
 					<h4>AnyNote 2018</h4>
 					<p>Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a></p>
@@ -15,7 +15,7 @@ class Footer extends Component {
 					</ul>
 				</div>
 			</div>
-		</div>
+		// </div>
     );
   }
 }
