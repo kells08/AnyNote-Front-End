@@ -85,7 +85,7 @@ class MainContainer extends Component {
   render(){
     console.log(this.state.notes)
     let notes = this.state.notes.map(note => (
-      <div className="" style={{backgroundColor:'white', opacity:'.7'}}>
+      <div className="" >
         <Note note={note} key={note.id} selectNote={this.selectNote}/>
       </div> 
   ));

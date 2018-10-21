@@ -24,22 +24,22 @@ class Login extends Component {
     return (
       <div>
         {this.props.loggedIn
-        ? <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>
+        ? <div id="banner">
             <h2>Welcome, {this.state.username}!</h2>
-            <button type='submit' onClick={this.handleLogout}>Logout</button>
+            <button type='submit' class='button small' onClick={this.handleLogout}>Logout</button>
           </div>
-        : <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>
+        : <div id="banner">
             <h1>Welcome! </h1>
             <h4>Please login:</h4>
-            <input type="text" placeholder="username" onChange={this.handleData} name="username"/>
+            <input type="text" placeholder="username" align="center" onChange={this.handleData} name="username"/>
             <input type="text" placeholder="password" onChange={this.handleData} name="password"/>
-            <button type='submit' onClick={this.handleClick}>Submit</button>
-            <br/><a onClick="handleSignup">No Account? Signup!</a>
-          </div>//click Signup href={this.signupFunc}
+            <button type='submit' class='button small' onClick={this.handleClick}>Submit</button>
+            <br/><a href='' onClick="handleSignup">No Account? Signup!</a>
+          </div>
         }
       </div>
     );
-  }  // need to add signup option
+  } 
 }
 
 export default Login;

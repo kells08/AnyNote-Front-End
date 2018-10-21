@@ -6,21 +6,15 @@ class Header extends Component {
       <div id="header" className="skel-panels-fixed">
           <div id="logo">
             <h1><a href="index.html">AnyNote </a></h1>
-            <span className="span"> by Kelly Lwakatare</span>
+            <span style={{color:'#555'}}> by Kelly Lwakatare</span>
           </div>
-          <nav id="nav">
+          {/* <nav id="nav">
             <ul>
               <li className="active"><a href="index.html">Home</a></li>
             </ul>
-          </nav>
+          </nav> */}
       </div>
 
-
-
-      // <div className="" style={{border: 'solid'}}>
-      //  <h1>AnyNote</h1>
-      //  <p>Welcome, user!</p>
-      // </div>
     );
   }
 }
