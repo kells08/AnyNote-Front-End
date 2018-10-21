@@ -3,15 +3,16 @@ class Note extends Component {
   
   render() {
     console.log(this.props.note.id)
+    const noteprops = this.props.note
     return (
       <div id="extra">
 				<div className="container">
 					<div className="row no-collapse-1">
             <section className="4u">
-							<div className="box" style={{border:'solid'}} onClick={() => this.props.selectNote(this.props.note)}>
-                <h3>{this.props.note.title}</h3>
-                <p>Due Date: {this.props.note.due_date} </p>
-                <p>Text: {this.props.note.text}</p>
+							<div className="box" style={{border:'solid'}} onClick={() => this.props.selectNote(noteprops)}>
+                <h3>{noteprops.title}</h3>
+                {/* <p>Due Date: {this.props.note.due_date} </p> */}
+                <p>Text: {noteprops.text.length <= 30 ? noteprops.text : noteprops.text.substring(0,40) + "..."}</p>
               </div>
 						</section>
           </div>

@@ -35,7 +35,7 @@ class FullNote extends Component {
     },
     body: JSON.stringify ({
       note: { 
-        title: title,
+        title,
         due_date, // same as due_date: due_date
         color,
         text 
@@ -100,14 +100,14 @@ class FullNote extends Component {
   renderEditButton = () => {
     if (this.state.mode === 'view') {
       return (
-        <button onClick={this.handleEdit}>
+        <button class='button small' onClick={this.handleEdit}>
           Edit
         </button>
       );
     } else {
       return (
-        <button onClick={this.handleDelete}>
-          DELETE
+        <button class='button small' onClick={this.handleDelete}>
+          Delete
         </button>
       );
     }
@@ -116,7 +116,7 @@ class FullNote extends Component {
   render() {
     console.log(this.state)
     return (
-      <div className="banner" style={{backgroundColor:'white', opacity:'.7'}}>
+      <div className="banner" >
         <h4>{this.state.title ? this.state.title : 'None selected'}</h4>
         <p>{this.state.text ? this.state.text : 'None selected'}</p>
         {/* {this.renderInputFields()} */}

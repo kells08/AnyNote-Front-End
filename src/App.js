@@ -88,7 +88,7 @@ class App extends Component {
       }
       else {
         localStorage.token = "undefined"
-        window.alert("Invalid Credentials. Please try again!");
+        window.alert("Invalid credentials. Please try again!");
       }
     }
     )
