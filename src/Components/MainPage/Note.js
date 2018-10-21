@@ -11,8 +11,9 @@ class Note extends Component {
             <section className="4u">
 							<div className="box" style={{border:'solid'}} onClick={() => this.props.selectNote(noteprops)}>
                 <h3>{noteprops.title}</h3>
+                <br/>
                 {/* <p>Due Date: {this.props.note.due_date} </p> */}
-                <p>Text: {noteprops.text.length <= 30 ? noteprops.text : noteprops.text.substring(0,40) + "..."}</p>
+                <p>{noteprops.text.length <= 30 ? noteprops.text : noteprops.text.substring(0,40) + "..."}</p>
               </div>
 						</section>
           </div>

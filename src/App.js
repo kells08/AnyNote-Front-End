@@ -114,7 +114,7 @@ class App extends Component {
       <div className="wrapper style1">
         <Header/>
         <Login login={this.login} logout={this.logout} loggedIn={this.state.loggedIn}/>
-        {this.state.loggedIn ? <MainContainer  loggedIn={this.state.loggedIn} style={{backgroundColor:'white', opacity:'.8'}}/> : null}
+        {this.state.loggedIn ? <MainContainer loggedIn={this.state.loggedIn} style={{backgroundColor:'white', opacity:'.8'}}/> : null}
         <Footer />
       </div>
     )

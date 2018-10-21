@@ -100,15 +100,21 @@ class FullNote extends Component {
   renderEditButton = () => {
     if (this.state.mode === 'view') {
       return (
-        <button class='button small' onClick={this.handleEdit}>
-          Edit
-        </button>
+        <div>
+          <button class='button small' onClick={this.handleEdit}>
+            Edit
+          </button>
+          <br/>
+        </div>
       );
     } else {
       return (
-        <button class='button small' onClick={this.handleDelete}>
-          Delete
-        </button>
+        <div>
+          <button class='button small' onClick={this.handleDelete}>
+            Delete
+          </button>
+          <br/>
+        </div>
       );
     }
   }
@@ -117,7 +123,7 @@ class FullNote extends Component {
     console.log(this.state)
     return (
       <div className="banner" >
-        <h4>{this.state.title ? this.state.title : 'None selected'}</h4>
+        <h2>{this.state.title ? this.state.title : 'None selected'}</h2>
         <p>{this.state.text ? this.state.text : 'None selected'}</p>
         {/* {this.renderInputFields()} */}
         {this.renderEditButton()}

@@ -94,6 +94,11 @@ class MainContainer extends Component {
       <div>
         <div>
           <Search/>
+          <nav id="nav">
+            <ul>
+              <li className="active"><a href="index.html">Home</a></li>
+            </ul>
+          </nav>
           <button class='button small' onClick={this.createNote}>Create a new note</button>
           {this.state.clickedCreate ? <NoteForm submitForm={this.saveNewNote} /> : null}
           
@@ -101,7 +106,7 @@ class MainContainer extends Component {
           {this.state.selectedNote ? <FullNote {...this.state.selectedNote} updateAllNotes={this.updateAllNotes} /> : null }
         </div>
       </div>
-    )
+    ) 
   }
   
 }

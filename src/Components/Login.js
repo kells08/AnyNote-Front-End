@@ -24,11 +24,11 @@ class Login extends Component {
     return (
       <div>
         {this.props.loggedIn
-        ? <div id="banner">
+        ? <div className="banner">
             <h2>Welcome, {this.state.username}!</h2>
             <button type='submit' class='button small' onClick={this.handleLogout}>Logout</button>
           </div>
-        : <div id="banner">
+        : <div className="banner">
             <h1>Welcome! </h1>
             <h4>Please login:</h4>
             <input type="text" placeholder="username" align="center" onChange={this.handleData} name="username"/>

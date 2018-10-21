@@ -127,6 +127,7 @@
 		width: 70%;
 		margin: 0em auto;
 		position: center;
+		background: url(./images/trianglify3large.png);
 	}
 
 	input[type="text"],
@@ -138,7 +139,7 @@
 		-o-appearance: none;
 		-ms-appearance: none;
 		appearance: none;
-    background: url(./images/trianglify3large.png);
+    background: #FFF;
     opacity: .7;
 		color: black;
 		border: solid;
@@ -146,8 +147,9 @@
 		outline: 0;
 		padding: 1em 1em;
 		text-decoration: none;
-		width: inherit;
-		border-radius: px;
+		width: 20em;
+		border-radius: 1px;
+		margin: auto;
 	}
 
 		input[type="text"]:focus,
@@ -192,6 +194,20 @@
 	.formerize-placeholder {
 		color: rgba(85, 85, 85, 0.5) !important;
 	}
+
+/* Noteform */
+
+	.noteform {
+		clear: both;
+		background: url(./images/trianglify3large.png);
+		opacity: .9;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+		.noteform.textarea {
+			overflow-y: scroll;
+		}
 
 /* Image */
 
@@ -443,6 +459,7 @@
 		font-size: 1.2em;
 		font-weight: 600;
 		color: #FFF !important;
+		margin-bottom: .5em;
 	}
 
 		input[type="submit"]:hover,
@@ -562,28 +579,31 @@
 
 /* Banner */
 
-	#banner {
+	.banner {
 		text-align: center;
 		color: black;
 		padding: 2em 4em;
     margin-bottom: 0em;
 		background: url(./images/trianglify3large.png);
 		opacity: .9;
+		clear: both;
 	}
 
-		#banner p {
-			font-size: 1.75em;
+		.banner p {
+			font-size: 1.25em;
 			line-height: 1.75em;
 		}
 
-	#banner strong,
-	#banner a {
+	.banner strong,
+	.banner a {
 		color: inherit;
 	}
 
 /* Search */
 
 	.search {
+		display: block;
+		margin: auto;
 		background: url(./images/trianglify3large.png);
 		opacity: .9;
 	}
@@ -630,6 +650,7 @@
 		background: url(./images/trianglify3large.png);
 		opacity: .9;
 		margin-bottom: 4em;
+		clear: both;
 	
 	}
 		#copyright h4 {
@@ -649,21 +670,20 @@
 
 	.box {
 		padding: 3em 2em;
-		margin: 3em 2em;
+		margin: 3em 4em;
 		background: url(./images/trianglify3small.png);
 		text-align: center;
 		border-radius: 0px 0px 6px 6px;
-		width: 20%;
-		/* height: 15%; */
-		/* display:block; */
-		position: relative;
-		/* float: ;  */
-		/* padding-top:0!important; */
-
+		width: 12em;
+		height: 10em;
+		display:block;
+		float: left; 
+		/* padding-top: 3em; 	/* initial ratio of 1:1*/
+	/* 	padding-bottom: 2em; */
 	}
-
+/* 
 		.box:before{
 			content: "";
 			display: block;
 			padding-top: 20%; 	/* initial ratio of 1:1*/
-		} 
+		/* }  */ 
