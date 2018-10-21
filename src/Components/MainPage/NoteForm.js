@@ -17,13 +17,13 @@ class NoteForm extends Component {
   render() {
     const { title, due_date, color, text } = this.state;
     return (
-       <div className="" style={{backgroundColor:'white', opacity:'.8'}}>
+       <div className="">
        Create your note:
          <p>Note Title:</p> <input name="title" value={title} onChange={(e) => this.onChange(e)}/>
          <p>Due Date:</p> <input name="due_date" value={due_date} onChange={this.onChange}/>
          <p>Color:</p> <input name="color" value={color} onChange={this.onChange}/>
          <p>Text:</p> <textarea name="text" value={text} onChange={this.onChange}/>
-         <button onClick={() => this.props.submitForm({...this.state})}>Save</button>
+         <button class='button small' onClick={() => this.props.submitForm({...this.state})}>Save</button>
        </div>
     );
   }

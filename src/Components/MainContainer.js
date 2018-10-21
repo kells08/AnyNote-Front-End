@@ -93,11 +93,12 @@ class MainContainer extends Component {
     return (
       <div>
         <div>
-          <button onClick={this.createNote}>Create a new note</button>
-          {this.state.clickedCreate ? <NoteForm submitForm={this.saveNewNote} /> : null}
           <Search/>
+          <button class='button small' onClick={this.createNote}>Create a new note</button>
+          {this.state.clickedCreate ? <NoteForm submitForm={this.saveNewNote} /> : null}
+          
           { notes }
-        {this.state.selectedNote ? <FullNote {...this.state.selectedNote} updateAllNotes={this.updateAllNotes} /> : null }
+          {this.state.selectedNote ? <FullNote {...this.state.selectedNote} updateAllNotes={this.updateAllNotes} /> : null }
         </div>
       </div>
     )
