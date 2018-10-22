@@ -499,6 +499,18 @@
 			font-size: 1.6em;
 		}
 
+/* Signup */
+	
+	#signup {
+		font-weight: 700;
+	}
+
+		#signup:hover {
+				color: #d84780;
+				font-weight: 800;
+				cursor: pointer;
+		}
+
 /* Wrapper */
 
 	.wrapper.style1 {
