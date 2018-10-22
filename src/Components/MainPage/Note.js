@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 class Note extends Component {
   
   render() {
-    console.log(this.props.note.id)
+    //console.log(this.props.note.id)
     const noteprops = this.props.note
     return (
       <div id="extra">

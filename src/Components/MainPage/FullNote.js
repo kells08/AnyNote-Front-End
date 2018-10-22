@@ -43,9 +43,7 @@ class FullNote extends Component {
     })})
     .then(resp => resp.json())
     .then(response => {
-      this.setState ({  // after setting state in this
-                        // component back to view mode 
-                        // send response back to callback to mainContainer
+      this.setState ({  // after setting state in this component back to view mode send response back to callback to mainContainer
         mode: 'view',
         title: '',
         due_date: '',
@@ -86,16 +84,19 @@ class FullNote extends Component {
     }})
     .then(resp => resp.json())
     .then(response => {
-      this.setState ({  // after setting state in this
-                        // component back to view mode 
-                        // send response back to callback to mainContainer
+      this.setState ({  // after setting state in this component back to view mode send response back to callback to mainContainer
         mode: 'view',
-
       }, () => {
         this.props.updateAllNotes(response);
       })
     })
 }
+
+  handleCancel = (e) => {
+    console.log(e.target.parentElement)
+    e.preventDefault();
+    // e.target.reset();
+  }
 
   renderEditButton = () => {
     if (this.state.mode === 'view') {
@@ -127,7 +128,8 @@ class FullNote extends Component {
         <p>{this.state.text ? this.state.text : 'None selected'}</p>
         {/* {this.renderInputFields()} */}
         {this.renderEditButton()}
-        {this.state.mode === 'edit' ? <NoteForm {...this.state}  submitForm={this.saveEdit}/>  : null}
+        <button class='button small' onClick={this.handleCancel.bind(this)}>Cancel</button>
+        {this.state.mode === 'edit' ? <NoteForm {...this.state} submitForm={this.saveEdit}/> : null}
       </div>
     );
   } 

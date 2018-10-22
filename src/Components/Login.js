@@ -28,7 +28,7 @@ class Login extends Component {
             <h4>Please login:</h4>
             <input type="text" placeholder="username" align="center" onChange={this.handleData} name="username"/>
             <input type="text" placeholder="password" onChange={this.handleData} name="password"/>
-            <button type='submit' class='button small' onClick={this.handleClick}>Submit</button>
+            <button type='submit' className='button small' onClick={this.handleClick}>Submit</button>
             <br/><a href='' onClick="handleSignup">No Account? Signup!</a>
           </div>
         }
