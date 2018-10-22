@@ -502,12 +502,12 @@
 /* Signup */
 	
 	#signup {
-		font-weight: 600;
+		font-weight: 700;
 	}
 
 		#signup:hover {
 				color: #d84780;
-				font-weight: 700;
+				font-weight: 800;
 				cursor: pointer;
 		}
 
