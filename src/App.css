@@ -677,7 +677,7 @@
 
 	.box {
 		padding: 3em 2em;
-		margin: 3em 4em;
+		margin: 3em 3em 2em 3em;
 		background: url(./images/trianglify3small.png);
 		text-align: center;
 		border-radius: 0px 0px 6px 6px;
