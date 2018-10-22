@@ -16,13 +16,15 @@ class UserForm extends Component {
   render() {
     const { name, username, password } = this.state;
     return (
-       <div className="noteform">
-         <p>Name:</p> <input name="name" value={title} onChange={(e) => this.onChange(e)}/>
-         <p>Username:</p> <input name="username" value={due_date} onChange={this.onChange}/>
-         <p>Password:</p> <input name="password" value={color} onChange={this.onChange}/>
-         <p>Confirm Password:</p> <textarea name="text" value={text} onChange={this.onChange}/>
-         <button class='button small' onClick={() => this.props.submitForm({...this.state})}>Sign up!</button>
-       </div>
+      <div className="noteform">
+        <h3>Please signup to enjoy AnyNote!</h3>
+        <br/>
+        <p>Name:</p> <input name="name" value={name} onChange={(e) => this.onChange(e)}/>
+        <p>Username:</p> <input name="username" value={username} onChange={this.onChange}/>
+        <p>Password:</p> <input name="password" value={password} onChange={this.onChange}/>
+        <p>Confirm Password:</p> <input name="text" />
+        <button className='button small' onClick={() => this.props.submitForm({...this.state})}>Sign up!</button>
+      </div>
     );
   }
 }

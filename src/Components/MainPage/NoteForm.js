@@ -22,7 +22,7 @@ class NoteForm extends Component {
          <p>Due Date:</p> <input name="due_date" value={due_date} onChange={this.onChange}/>
          <p>Color:</p> <input name="color" value={color} onChange={this.onChange}/>
          <p>Text:</p> <textarea name="text" value={text} onChange={this.onChange}/>
-         <button class='button small' onClick={() => this.props.submitForm({...this.state})}>Save</button>
+         <button className='button small' onClick={() => this.props.submitForm({...this.state})}>Save</button>
        </div>
     );
   }
