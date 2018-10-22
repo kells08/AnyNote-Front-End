@@ -73,7 +73,7 @@ class Login extends Component {
             <input type="text" placeholder="username" align="center" onChange={this.handleData} name="username"/>
             <input type="text" placeholder="password" onChange={this.handleData} name="password"/>
             <button type='submit' className='button small' onClick={this.handleClick}>Submit</button>
-            <br/><h4 onClick={this.createUser}>No Account? Signup!</h4>
+            <br/><h4 onClick={this.createUser}>No Account? <span id="signup">Signup!</span></h4>
           </div>
         }
       </div>
