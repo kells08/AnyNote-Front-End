@@ -105,7 +105,7 @@ class MainContainer extends Component {
             <button class='button small' onClick={this.searchNotes}>Search your notes</button> 
             <button class='button small' onClick={this.handleLogout} >Logout</button>           
           </nav>
-          
+          <br/>
           {this.state.clickedCreate ? <NoteForm submitForm={this.saveNewNote} /> : null}
           
           { notes }
