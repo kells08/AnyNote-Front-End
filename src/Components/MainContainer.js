@@ -10,7 +10,8 @@ class MainContainer extends Component {
     clicked: false,
     clickedCreate: false,
     notes: [],
-    currentNote: null
+    currentNote: null,
+    clickedSearch: false
   }
 
   componentDidMount() {
@@ -81,7 +82,7 @@ class MainContainer extends Component {
   } //setting state of this.props.note.id
 
   searchNotes = () => {
-
+    this.setState({clickedSearch: true})
   }
 
   handleLogout = (e) => {
@@ -99,16 +100,14 @@ class MainContainer extends Component {
     return (
       <div>
         <div>
-          <Search/>
           <nav id="nav">
             <button class='button small' onClick={this.createNote}>Create a new note</button>
             <button class='button small' onClick={this.searchNotes}>Search your notes</button> 
             <button class='button small' onClick={this.handleLogout} >Logout</button>           
           </nav>
           <br/>
-          
+          {this.state.clickedSearch ? <Search /> : null }
           {this.state.clickedCreate ? <NoteForm submitForm={this.saveNewNote} /> : null}
-          
           { notes }
           {this.state.selectedNote ? <FullNote {...this.state.selectedNote} updateAllNotes={this.updateAllNotes} /> : null }
         </div>

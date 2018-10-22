@@ -609,12 +609,17 @@
 /* Search */
 
 	.search {
-		display: block;
+		/* display: block; */
 		margin: auto;
 		background: url(./images/trianglify3large.png);
 		opacity: .9;
 	}
 
+	#searchbutton {
+		margin: auto;
+	}
+
+	
 /* Footer */
 
 	#footer {
