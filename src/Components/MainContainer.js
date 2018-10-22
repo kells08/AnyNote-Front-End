@@ -50,7 +50,7 @@ class MainContainer extends Component {
       },
       body: JSON.stringify ({
         note: { 
-          title: title,
+          title,
           due_date, // same as due_date: due_date
           color,
           text 
@@ -87,7 +87,7 @@ class MainContainer extends Component {
 
   handleLogout = (e) => {
     this.props.logout(this.state.username)
-  }//do I need to pass the user info to the logout func?
+  }
   
   render(){
     console.log(this.state.notes)
@@ -101,9 +101,9 @@ class MainContainer extends Component {
       <div>
         <div>
           <nav id="nav">
-            <button class='button small' onClick={this.createNote}>Create a new note</button>
-            <button class='button small' onClick={this.searchNotes}>Search your notes</button> 
-            <button class='button small' onClick={this.handleLogout} >Logout</button>           
+            <button className='button small' onClick={this.createNote}>Create a new note</button>
+            <button className='button small' onClick={this.searchNotes}>Search your notes</button> 
+            <button className='button small' onClick={this.handleLogout} >Logout</button>           
           </nav>
           <br/>
           {this.state.clickedSearch ? <Search /> : null }

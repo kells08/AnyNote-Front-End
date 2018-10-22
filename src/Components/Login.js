@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import UserForm from './UserForm'
 
 class Login extends Component {
+  state = {
+    clickedSignup: false
+  }
 
   handleClick = (e) => {
     this.props.login(this.state.username, this.state.password)
@@ -10,15 +14,55 @@ class Login extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
-  handleSignup = () => {
+  // handleSignup = () => {
 
+  // }
+
+  createUser = () => {
+    this.setState({
+      clickedSignup: true
+    })
   }
+
+  saveUser = ({ name, username, password }) => {
+      const token = localStorage.token
+      fetch('http://localhost:3001/signup/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify ({
+        user: { 
+          name,
+          username,
+          password
+        }
+      })})
+      .then(resp => resp.json())
+      .then(response => {
+        console.log(response)
+        this.setState ({
+          users: response,
+          clickedSignup: false,
+        })
+      })
+  }
+
+  // if Edit user is added:
+  // updateAllUsers = allUsers => {
+  //   this.setState({
+  //     currentNote: null,
+  //     users: allUsers
+  //   })
+  // }
 
   render() { 
     //console.log(this.props.loggedIn) //on refresh, loggedIn is reset to false
     //console.log(this.props)
     return (
       <div>
+        {this.state.clickedSignup ? <UserForm submitForm={this.saveUser} /> : null}
         {this.props.loggedIn
         ? <div className="banner">
             <h2>Hey, {this.state.username}!</h2>
@@ -29,7 +73,7 @@ class Login extends Component {
             <input type="text" placeholder="username" align="center" onChange={this.handleData} name="username"/>
             <input type="text" placeholder="password" onChange={this.handleData} name="password"/>
             <button type='submit' className='button small' onClick={this.handleClick}>Submit</button>
-            <br/><a href='' onClick="handleSignup">No Account? Signup!</a>
+            <br/><h4 onClick={this.createUser}>No Account? Signup!</h4>
           </div>
         }
       </div>
