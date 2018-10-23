@@ -24,6 +24,7 @@ class UserForm extends Component {
         <p>Password:</p> <input name="password" value={password} onChange={this.onChange}/>
         <p>Confirm Password:</p> <input name="text" />
         <button className='button small' onClick={() => this.props.submitForm({...this.state})}>Sign up!</button>
+        <button className='button small' onClick={this.props.createUser}>Cancel</button>
       </div>
     );
   }

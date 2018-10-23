@@ -90,12 +90,6 @@ class FullNote extends Component {
         this.props.updateAllNotes(response);
       })
     })
-}
-
-  handleCancel = (e) => {
-    console.log(e.target.parentElement)
-    e.preventDefault();
-    // e.target.reset();
   }
 
   renderEditButton = () => {
@@ -128,7 +122,7 @@ class FullNote extends Component {
         <p>{this.state.text ? this.state.text : 'None selected'}</p>
         {/* {this.renderInputFields()} */}
         {this.renderEditButton()}
-        <button class='button small' onClick={this.handleCancel.bind(this)}>Cancel</button>
+        <button class='button small' onClick={this.props.selectedNote}>Cancel</button>
         {this.state.mode === 'edit' ? <NoteForm {...this.state} submitForm={this.saveEdit}/> : null}
       </div>
     );

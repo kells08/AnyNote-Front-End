@@ -113,8 +113,8 @@ class App extends Component {
     return (
       <div className="wrapper style1">
         <Header/>
-        <Login login={this.login} loggedIn={this.state.loggedIn}/>
-        {this.state.loggedIn ? <MainContainer loggedIn={this.state.loggedIn} logout={this.logout} /> : null}
+       {localStorage.token ? null : <Login login={this.login} loggedIn={this.state.loggedIn}/>} 
+        {localStorage.token ? <MainContainer currentUser={this.state.currentUser} loggedIn={this.state.loggedIn} logout={this.logout} /> : null}
         <Footer />
       </div>
     )

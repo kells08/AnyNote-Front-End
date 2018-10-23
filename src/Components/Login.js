@@ -16,7 +16,7 @@ class Login extends Component {
 
   createUser = () => {
     this.setState({
-      clickedSignup: true
+      clickedSignup: !this.state.clickedSignup
     })
   }
 
@@ -54,23 +54,20 @@ class Login extends Component {
   // }
 
   render() { 
-    //console.log(this.props.loggedIn) //on refresh, loggedIn is reset to false
+    //console.log(this.props.loggedIn) 
     //console.log(this.props)
     return (
       <div>
-        {this.state.clickedSignup ? <UserForm submitForm={this.saveUser} /> : null}
-        {this.props.loggedIn
-        ? <div className="banner">
-            <h2>Hey, {this.state.username}!</h2>
-          </div>
-        : <div className="banner">
+        {this.state.clickedSignup ? <UserForm submitForm={this.saveUser} createUser={this.createUser} /> : 
+        <div className="banner">
             <h1>Welcome! </h1>
             <h4>Please login:</h4>
             <input type="text" placeholder="username" align="center" onChange={this.handleData} name="username"/>
             <input type="text" placeholder="password" onChange={this.handleData} name="password"/>
             <button type='submit' className='button small' onClick={this.handleClick}>Submit</button>
             <br/><h4 onClick={this.createUser}>No Account? <span id="signup">Signup!</span></h4>
-          </div>
+          </div>}
+        {this.props.loggedIn
         }
       </div>
     );
