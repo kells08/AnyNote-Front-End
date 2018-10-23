@@ -11,7 +11,10 @@ class MainContainer extends Component {
     clickedCreate: false,
     notes: [],
     currentNote: null,
-    clickedSearch: false
+    clickedSearch: false,
+    searchTerm: " ",
+    filteredNotes: [],
+    show: false
   }
 
   componentDidMount() {
@@ -36,7 +39,7 @@ class MainContainer extends Component {
   //if clicked and selectedNote is empty, render blank form
   createNote = () => {
     this.setState({
-      clickedCreate: true
+      clickedCreate: !this.state.clickedCreate
     })
   }
 
@@ -74,42 +77,85 @@ class MainContainer extends Component {
       notes: allNotes
     })
   }
-  
 
   selectNote = (note) => {
     console.log(note)
-    this.setState({selectedNote: note})
+    this.setState({selectedNote: note, clicked:!this.state.clicked})
+    
   } //setting state of this.props.note.id
 
   searchNotes = () => {
-    this.setState({clickedSearch: true})
+    this.setState({clickedSearch: !this.state.clickedSearch})
   }
 
   handleLogout = (e) => {
     this.props.logout(this.state.username)
   }
   
+  // newSearchNotes = (searchNotes) => {
+  //   this.setState({
+  //     notes: searchNotes
+  //   })
+  // }
+
+  //-----------Search------------
+  filterTitles = (e) => {
+    this.setState({searchTerm:e.target.value}, () =>  
+    this.filteredTitles(this.state.searchTerm)
+    )
+  }
+
+  filteredTitles = (searchTerm) => {
+    const allTitles = this.state.notes
+    const searchTerm_L = searchTerm.toLowerCase()
+    //console.log(allTitles)
+    const filteredNotes = allTitles.filter( note => {
+      return note.title.toLowerCase().includes(searchTerm_L)
+    })
+    console.log(filteredNotes)
+    // return filteredNotes
+    if (filteredNotes) {
+      this.setState({
+        filteredNotes: filteredNotes,
+        show: true
+     })
+    }
+    else {
+      this.setState({
+        show: false
+      })
+    }
+  }
+
   render(){
     console.log(this.state.notes)
-    let notes = this.state.notes.map(note => (
-      <div className="" >
-        <Note note={note} key={note.id} selectNote={this.selectNote}/>
-      </div> 
-  ));
-
     return (
       <div>
         <div>
           <nav id="nav">
-            <button className='button small' onClick={this.createNote}>Create a new note</button>
-            <button className='button small' onClick={this.searchNotes}>Search your notes</button> 
+            <div className="banner">
+              <h2>Hey, {this.props.currentUser.name}!</h2>
+            </div>
+            <button className='button small' onClick={this.createNote} >Create a new note</button>
+            <button className='button small' onClick={this.searchNotes} >Search your notes</button> 
             <button className='button small' onClick={this.handleLogout} >Logout</button>           
           </nav>
           <br/>
-          {this.state.clickedSearch ? <Search /> : null }
+          {this.state.clickedSearch ? <Search notes={this.state.notes} filterTitles={this.filterTitles} /> : null }
           {this.state.clickedCreate ? <NoteForm submitForm={this.saveNewNote} /> : null}
-          { notes }
-          {this.state.selectedNote ? <FullNote {...this.state.selectedNote} updateAllNotes={this.updateAllNotes} /> : null }
+          { this.state.show 
+            ? this.state.filteredNotes.map(note => (
+              <div className="" >
+                <Note note={note} key={note.id} selectNote={this.selectNote}/>
+              </div> 
+            ))
+            :this.state.notes.map(note => (
+              <div className="" >
+                <Note note={note} key={note.id} selectNote={this.selectNote}/>
+              </div> 
+            )) 
+          }
+          {this.state.clicked ? <FullNote {...this.state.selectedNote} updateAllNotes={this.updateAllNotes} selectedNote={this.selectNote} /> : null }
         </div>
       </div>
     ) 
@@ -131,27 +177,6 @@ export default MainContainer;
   //   }})
   //   .then(resp => resp.json())
   //   .then(console.log)
-
-
-
-  // filterNotes = () => {
-  //   const allNotes = this.state.notes
-  //   return allNotes.filter( note => {
-  //     return note.title.includes(this.state.searchTerm)
-  //   })
-  // }
-
-  // selectNote = (note) => {
-  //   //console.log(note)
-  //   let index = this.state.notes.indexOf(note);
-  //     if (index > -1) {
-  //       this.state.notes.splice(index, 1);
-  //     }
-  //     this.setState({
-  //       selectedNote: this.state.selectedNote
-  //     })
-  //   //console.log(this.state)
-  // }
 
   // //GET Notes/:id
   // getNotes = () => {
